@@ -105,11 +105,11 @@
 								<div class="item mb-3">
 									<div class="item-heading row align-items-center mb-2">
 										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">
-											<a href="#" class="theme-link">GKE 환경 Vector HPA 적용</a>
+											<a href="https://github.com/hoseong0422/data-platform-portfolio/tree/main/projects/01-streaming-log-pipeline/k8s" class="theme-link">GKE 환경 Vector HPA 적용</a>
 										</h4>
 									</div>
 									<div class="item-content">
-										<p>Keda를 활용하여 Vector를 이용하여 GKE 로그를 수집하는 파이프라인을 구축하였습니다.</p>
+										<p>KEDA 기반 HPA를 도입하였습니다.</p>
 										<p>Vector의 CPU·Memory 사용률은 안정적이었으나 GCP Pub/Sub 메시지 적체가 발생함에 따라, 리소스 지표 기반 HPA의 한계를 확인하고 KEDA를 도입하였습니다. Pub/Sub의 미확인 메시지 수를 외부 지표로 연동하여 Vector가 트래픽 증가에 따라 자동 확장되도록 구성하였습니다. 또한 KEDA 적용 방법과 운영 시 고려사항을 문서화하여 데브옵스 엔지니어가 다른 서비스에도 KEDA를 적용할 수 있는 내부 레퍼런스를 제공하였습니다.</p>
 									</div>
 								</div><!--//item-->								
