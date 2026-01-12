@@ -1,0 +1,60 @@
+/* =========================
+   A4 PDF 전용 스타일
+   ========================= */
+
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+html, body {
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+/* 전체 레이아웃 고정 */
+.main-wrapper,
+.container,
+.resume-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Bootstrap 반응형 무력화 */
+.row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+/* 좌우 컬럼 고정 */
+.resume-main {
+  width: 70% !important;
+}
+
+.resume-aside {
+  width: 30% !important;
+}
+
+/* 그림자 제거 */
+.shadow-lg {
+  box-shadow: none !important;
+}
+
+/* 링크 뒤 URL 제거 */
+a[href]:after {
+  content: none !important;
+}
+
+/* 페이지 깨짐 방지 */
+section, .item {
+  page-break-inside: avoid;
+}
+
+/* PDF용 여백 정리 */
+.resume-section-heading {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
