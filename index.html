@@ -95,24 +95,24 @@
 								<div class="item mb-3">
 									<div class="item-heading row align-items-center mb-2">
 										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">
-											<a href="https://github.com/hoseong0422/data-platform-portfolio/tree/main/projects/01-streaming-log-pipeline/k8s" class="theme-link">GKE 로그 파이프라인 구축</a>
+											<a href="https://github.com/hoseong0422/data-platform-portfolio/tree/main/projects/01-streaming-log-pipeline/k8s" class="theme-link">GKE 로그 파이프라인 구축 및 안정화</a>
 										</h4>
-									</div>
-									<div class="item-content">
-										<p>Vector를 이용하여 GKE 로그를 수집하는 파이프라인을 구축하였습니다.</p>
-										<p>GKE 클러스터 생성시 GCP Cloud Logging과의 통합이 기본적으로 설정되어있기 때문에 Cloud Logging의 로그 라우터 기능을 이용하여 Pub/Sub으로 수집 대상 로그를 전송하고 Pub/Sub의 로그를 Vector로 pull 하여 kafka로 전송하는 파이프라인을 구축하였습니다. 초기에는 FluentD를 이용하여 Pub/Sub에서 메시지를 가져왔지만 FLuentD의 Pub/Sub 플러그인이 커뮤니티 플러그인이면서 관리가 되지 않고 있었으며 멀티 프로세스 지원을 하지 않아 Vector로 변경하여 구축하였습니다.</p>
-									</div>
-								</div><!--//item-->
-								<div class="item mb-3">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">
-											<a href="https://github.com/hoseong0422/data-platform-portfolio/tree/main/projects/01-streaming-log-pipeline/k8s" class="theme-link">GKE 환경 Vector HPA 적용</a>
-										</h4>
-									</div>
-									<div class="item-content">
-										<p>KEDA 기반 HPA를 도입하였습니다.</p>
-										<p>Vector의 CPU·Memory 사용률은 안정적이었으나 GCP Pub/Sub 메시지 적체가 발생함에 따라, 리소스 지표 기반 HPA의 한계를 확인하고 KEDA를 도입하였습니다. Pub/Sub의 미확인 메시지 수를 외부 지표로 연동하여 Vector가 트래픽 증가에 따라 자동 확장되도록 구성하였습니다. 또한 KEDA 적용 방법과 운영 시 고려사항을 문서화하여 데브옵스 엔지니어가 다른 서비스에도 KEDA를 적용할 수 있는 내부 레퍼런스를 제공하였습니다.</p>
-									</div>
+										</div>
+										<div class="item-content">
+											<p>기존 Cloud Logging → Pub/Sub → Vector(Deployment) 구조를 개선하여, 불필요한 Managed 서비스 비용을 줄이고 GKE 노드의 컨테이너 로그를 Vector Agent(DaemonSet)가 파일에서 직접 수집해 Kafka로 전송하는 구조로 전환하였습니다. App of Apps로 관리되지 않는 서비스는 공식 Vector chart를 포함한 Umbrella Helm chart를 직접 구성했습니다.</p>
+											<p>로그 버스트 상황에서 Kubernetes Log Source가 Log Rotate 전에 파일을 모두 읽지 못해 누락되는 문제를 확인하여 File Source로 변경했습니다. <code>/var/log/pods/</code>의 로테이트된 일반 로그는 수집하되 <code>.gz</code>·<code>.tmp</code> 파일은 제외하고, checkpoint·디스크 버퍼·graceful shutdown을 적용해 재시작과 전송 지연 상황의 유실 가능성을 줄였습니다.</p>
+										</div>
+									</div><!--//item-->
+									<div class="item mb-3">
+										<div class="item-heading row align-items-center mb-2">
+											<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">
+												<a href="https://github.com/hoseong0422/data-platform-portfolio/tree/main/projects/01-streaming-log-pipeline/k8s" class="theme-link">GKE Vector 초기 수집 구조 및 KEDA 적용</a>
+											</h4>
+										</div>
+										<div class="item-content">
+											<p>DaemonSet 전환 전 1차 구조에서는 Vector Deployment를 Pub/Sub backlog 기반으로 확장하기 위해 KEDA를 적용했습니다.</p>
+											<p>이후 노드 직접 수집 방식으로 전환하면서 서비스 중간의 Cloud Logging·Pub/Sub 의존성과 Deployment 기반 scaling을 제거하고, Vector Agent가 노드별로 자동 배치되는 구조로 고도화했습니다. App of Apps 배포 영역은 데브옵스 엔지니어의 관리 경계로 분리하고, 제가 담당한 서비스는 Umbrella chart에서 ConfigMap·PriorityClass·Agent 설정을 함께 관리했습니다.</p>
+										</div>
 								</div><!--//item-->								
 								<div class="item">
 									<div class="item-heading row align-items-center mb-2">
@@ -227,4 +227,3 @@
 
 </body>
 </html> 
-
