@@ -71,6 +71,14 @@ body {
   min-width: 0 !important;
 }
 
+/* Bootstrap의 me-md-5가 이미지 컬럼 밖으로 확장되는 것을 방지 */
+.resume-intro .resume-profile-image {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+}
+
 .resume-body > .row > .resume-main {
   flex: 0 0 70% !important;
   width: 70% !important;
