@@ -7,26 +7,98 @@
   margin: 15mm;
 }
 
-html, body {
-  width: 210mm;
-  height: 297mm;
+html {
+  width: auto;
+  height: auto;
+}
+
+body {
+  width: auto;
+  min-height: 0;
   margin: 0;
   padding: 0;
   font-size: 12px;
 }
 
 /* 전체 레이아웃 고정 */
-.main-wrapper,
+.main-wrapper {
+  width: 100% !important;
+}
+
 .container,
 .resume-wrapper {
   width: 100% !important;
   max-width: 100% !important;
 }
 
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.resume-wrapper {
+  margin: 0 !important;
+}
+
 /* Bootstrap 반응형 무력화 */
-.row {
+.resume-header > .row,
+.resume-intro > .row,
+.resume-body > .row {
   display: flex !important;
   flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+
+.resume-header .resume-title {
+  flex: 0 0 70% !important;
+  width: 70% !important;
+}
+
+.resume-header .resume-contact {
+  flex: 0 0 30% !important;
+  width: 30% !important;
+}
+
+.resume-intro > .row > :first-child {
+  flex: 0 0 20% !important;
+  width: 20% !important;
+}
+
+.resume-intro > .row > :last-child {
+  flex: 1 1 auto !important;
+  width: 80% !important;
+  min-width: 0 !important;
+}
+
+.resume-body > .row > .resume-main {
+  flex: 0 0 70% !important;
+  width: 70% !important;
+  min-width: 0 !important;
+}
+
+.resume-body > .row > .resume-aside {
+  flex: 0 0 30% !important;
+  width: 30% !important;
+  min-width: 0 !important;
+}
+
+.item-heading {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+}
+
+.item-heading .item-title {
+  flex: 0 0 70% !important;
+  width: 70% !important;
+  min-width: 0 !important;
+}
+
+.item-heading .item-meta {
+  flex: 0 0 30% !important;
+  width: 30% !important;
+  min-width: 0 !important;
 }
 
 /* 좌우 컬럼 고정 */
@@ -49,8 +121,25 @@ a[href]:after {
 }
 
 /* 페이지 깨짐 방지 */
-section, .item {
+section {
+  page-break-inside: auto;
+  break-inside: auto;
+}
+
+.item {
   page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.project-section > .resume-section-heading,
+.education-section > .resume-section-heading {
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.resume-education-list > li {
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 /* PDF용 여백 정리 */
