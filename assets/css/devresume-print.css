@@ -58,6 +58,18 @@ body {
 .resume-header .resume-contact {
   flex: 0 0 30% !important;
   width: 30% !important;
+  padding-left: 8px !important;
+  padding-right: 0 !important;
+  font-size: 0.7rem !important;
+  white-space: nowrap !important;
+}
+
+.resume-header .resume-contact li {
+  white-space: nowrap !important;
+}
+
+.resume-header .resume-contact .me-2 {
+  margin-right: 0.35rem !important;
 }
 
 .resume-intro > .row > :first-child {
@@ -98,15 +110,16 @@ body {
 }
 
 .item-heading .item-title {
-  flex: 0 0 70% !important;
-  width: 70% !important;
+  flex: 0 0 60% !important;
+  width: 60% !important;
   min-width: 0 !important;
 }
 
 .item-heading .item-meta {
-  flex: 0 0 30% !important;
-  width: 30% !important;
+  flex: 0 0 40% !important;
+  width: 40% !important;
   min-width: 0 !important;
+  white-space: nowrap !important;
 }
 
 /* 좌우 컬럼 고정 */
@@ -148,6 +161,27 @@ section {
 .resume-education-list > li {
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+/* Skills 항목은 제목만 남고 내용이 다음 페이지로 밀리지 않도록 허용 */
+.resume-aside .skills-section .resume-section-heading {
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.resume-aside .skills-section .item {
+  page-break-inside: auto;
+  break-inside: auto;
+}
+
+.resume-aside .skills-section h6 {
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.resume-aside .skills-section h6 + li {
+  page-break-before: avoid;
+  break-before: avoid;
 }
 
 /* PDF용 여백 정리 */
